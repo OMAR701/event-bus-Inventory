@@ -1,0 +1,34 @@
+server:
+  port: 8080
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/inventory_dev?currentSchema=dev
+    username: ${POSTGRES_USER:postgres}
+    password: ${POSTGRES_PASSWORD:admin123}
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    open-in-view: false
+
+  flyway:
+    enabled: true
+    schemas: dev
+    locations: classpath:db/migration/dev
+
+logging:
+  level:
+    root: info
+    com.inventory: debug
+    org.springframework.web: debug
+
+devtools:
+  restart:
+    enabled: true
+
+dotenv:
+  filename: .env
+  directory: ./
+  ignoreIfMissing: false
+  systemProperties: false
+  prefix: null

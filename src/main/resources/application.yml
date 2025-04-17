@@ -1,0 +1,47 @@
+spring:
+  profiles:
+    active: dev
+  application:
+    name: inventory-management-system
+  jackson:
+    serialization:
+      fail-on-empty-beans: false
+    time-zone: UTC
+
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        default_schema: public
+        jdbc:
+          lob:
+            non_contextual_creation: true
+
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/${POSTGRES_DB:inventory_dev}?currentSchema=public
+    username: ${POSTGRES_USER:postgres}
+    password: ${POSTGRES_PASSWORD:admin123}
+    hikari:
+      maximum-pool-size: 10
+      connection-timeout: 30000
+
+  cache:
+    type: caffeine
+    caffeine:
+      spec: maximumSize=500,expireAfterWrite=1h
+
+logging:
+  level:
+    org.hibernate.SQL: debug
+    org.hibernate.type.descriptor.sql.BasicBinder: trace
+
+dotenv:
+  filename: .env
+  directory: ./
+  ignoreIfMissing: false
+  systemProperties: false
+  prefix: null
