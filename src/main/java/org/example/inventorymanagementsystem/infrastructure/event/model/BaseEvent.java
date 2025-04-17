@@ -1,21 +1,20 @@
 package org.example.inventorymanagementsystem.infrastructure.event.model;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
 import java.time.Instant;
 
 @Getter
-@AllArgsConstructor
-@Setter
-public abstract class BaseEvent<T> {
-
+public abstract class BaseEvent<T> implements InventoryEvent {
     private final T aggregateId;
     private final Instant timestamp;
+
     protected BaseEvent(T aggregateId) {
         this.aggregateId = aggregateId;
         this.timestamp = Instant.now();
+    }
+
+    @Override
+    public Long getAggregateId() {
+        return (Long) aggregateId;
     }
 }
