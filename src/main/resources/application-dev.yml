@@ -2,7 +2,7 @@ server:
   port: 8080
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/inventory_dev?currentSchema=dev
+    url: jdbc:postgresql://db:5432/inventory_dev?currentSchema=dev
     username: ${POSTGRES_USER:postgres}
     password: ${POSTGRES_PASSWORD:admin123}
   jpa:

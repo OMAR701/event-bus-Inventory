@@ -10,7 +10,6 @@ import org.example.inventorymanagementsystem.domain.enums.InventoryStatus;
 
 
 @Getter
-@Setter
 public class InventoryUpdatedEvent extends BaseEvent<Long> implements InventoryEvent{
 
 
